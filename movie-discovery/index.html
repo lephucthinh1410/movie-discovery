@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Movie Discovery App</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+  <!-- Header -->
+  <header class="topbar">
+    <div class="brand">
+      <span class="logo">🎬</span>
+      <div>
+        <h1>Movie Discovery</h1>
+        <p>Khám phá phim theo thể loại & tìm kiếm</p>
+      </div>
+    </div>
+
+    <div class="topbar-actions">
+      <a class="btn-link" id="bt30Link" href="#" target="_blank" rel="noopener">
+        🔗 Bài tập 30 (Kết quả)
+      </a>
+
+      <div class="mode-toggle" title="Chuyển Light/Dark">
+        <span class="mode-label" id="modeLabel">Light</span>
+        <label class="switch">
+          <input id="themeToggle" type="checkbox" />
+          <span class="slider"></span>
+        </label>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Grid Layout -->
+  <div class="layout">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="panel">
+        <h2>Bộ lọc</h2>
+
+        <label class="field">
+          <span class="field-label">Tìm theo tên</span>
+          <input id="searchInput" type="text" placeholder="Gõ tên phim..." autocomplete="off" />
+          <small class="hint">Có debounce (350ms) để tối ưu.</small>
+        </label>
+
+        <div class="divider"></div>
+
+        <div class="genres">
+          <div class="genres-head">
+            <h3>Thể loại</h3>
+            <button class="btn-ghost" id="clearFiltersBtn" type="button">Xoá lọc</button>
+          </div>
+
+          <div id="genreList" class="genre-list">
+            <!-- JS auto render checkbox tại đây -->
+          </div>
+        </div>
+      </div>
+
+      <div class="panel stats">
+        <div>
+          <p class="stat-title">Kết quả</p>
+          <p class="stat-value"><span id="countText">0</span> phim</p>
+        </div>
+        <div>
+          <p class="stat-title">Đang chọn</p>
+          <p class="stat-value"><span id="activeGenreText">0</span> thể loại</p>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="content">
+      <section class="content-head">
+        <h2>Danh sách phim</h2>
+        <p id="activeFilterNote" class="muted">Chọn thể loại hoặc gõ từ khoá để lọc.</p>
+      </section>
+
+      <section id="movieGrid" class="movie-grid">
+        <!-- JS render cards tại đây -->
+      </section>
+
+      <section id="emptyState" class="empty" hidden>
+        <h3>Không tìm thấy phim phù hợp 😥</h3>
+        <p>Thử xoá bớt bộ lọc hoặc đổi từ khoá.</p>
+      </section>
+    </main>
+  </div>
+
+  <!-- MODAL (QUAN TRỌNG: có hidden để vào trang KHÔNG hiện) -->
+  <div id="modalOverlay" class="modal-overlay" hidden>
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button id="modalCloseBtn" class="modal-close" aria-label="Đóng">✕</button>
+
+      <div class="modal-body">
+        <div class="modal-poster">
+          <img id="modalPoster" alt="Poster" />
+        </div>
+
+        <div class="modal-info">
+          <h2 id="modalTitle"></h2>
+          <p class="modal-meta" id="modalMeta"></p>
+
+          <div class="chips" id="modalGenres"></div>
+
+          <p class="modal-desc" id="modalDesc"></p>
+
+          <div class="modal-credits">
+            <p><strong>Đạo diễn:</strong> <span id="modalDirector"></span></p>
+            <p><strong>Diễn viên:</strong> <span id="modalCast"></span></p>
+            <p><strong>Thời lượng:</strong> <span id="modalRuntime"></span></p>
+          </div>
+
+          <div class="modal-actions">
+            <button class="btn" id="modalOkBtn" type="button">Đóng</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
